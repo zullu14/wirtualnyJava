@@ -11,6 +11,7 @@ public class Swiat {
     private boolean koniecGry;
 
     public Swiat(int rows, int cols) {
+        super();
         this.rows = rows;
         this.cols = cols;
         this.tura = 0;
