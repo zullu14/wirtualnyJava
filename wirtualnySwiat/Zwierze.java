@@ -1,5 +1,7 @@
 package wirtualnySwiat;
 
+import wirtualnySwiat.grafika.Pole;
+
 public abstract class Zwierze extends Organizm {
 
     public Zwierze(Swiat srodowisko, Wspolrzedne miejsce) {
@@ -68,6 +70,6 @@ public abstract class Zwierze extends Organizm {
         }
     }
 
-    public abstract void rysowanie();
+    public abstract void rysowanie(Pole pole);
 
 }

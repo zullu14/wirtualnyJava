@@ -4,6 +4,9 @@ import wirtualnySwiat.Rodzaj;
 import wirtualnySwiat.Swiat;
 import wirtualnySwiat.Wspolrzedne;
 import wirtualnySwiat.Zwierze;
+import wirtualnySwiat.grafika.Pole;
+
+import java.awt.*;
 
 public class Owca extends Zwierze {
 
@@ -15,7 +18,8 @@ public class Owca extends Zwierze {
     }
 
     @Override
-    public void rysowanie() {
-        // TODO
+    public void rysowanie(Pole pole) {
+        pole.setBackground(new Color(200,200,200));
+        pole.setNazwa("owca");
     }
 }

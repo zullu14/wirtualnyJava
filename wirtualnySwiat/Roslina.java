@@ -1,5 +1,7 @@
 package wirtualnySwiat;
 
+import wirtualnySwiat.grafika.Pole;
+
 public abstract class Roslina extends Organizm {
 
     public Roslina(Swiat srodowisko, Wspolrzedne miejsce) {
@@ -30,6 +32,6 @@ public abstract class Roslina extends Organizm {
         // określa co dzieje się ze zwierzęciem, które zje roślinę. Domyślnie nic.
     }
 
-    public abstract void rysowanie();
+    public abstract void rysowanie(Pole pole);
 
 }

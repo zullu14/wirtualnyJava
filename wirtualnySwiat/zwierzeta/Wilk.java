@@ -4,6 +4,9 @@ import wirtualnySwiat.Swiat;
 import wirtualnySwiat.Wspolrzedne;
 import wirtualnySwiat.Zwierze;
 import wirtualnySwiat.Rodzaj;
+import wirtualnySwiat.grafika.Pole;
+
+import java.awt.*;
 
 public class Wilk extends Zwierze {
 
@@ -15,7 +18,8 @@ public class Wilk extends Zwierze {
     }
 
     @Override
-    public void rysowanie() {
-        // TODO
+    public void rysowanie(Pole pole) {
+        pole.setBackground(new Color(50,130,230));
+        pole.setNazwa("wilk");
     }
 }

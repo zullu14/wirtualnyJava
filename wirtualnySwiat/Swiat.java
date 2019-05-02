@@ -18,10 +18,10 @@ public class Swiat {
         this.koniecGry = false;
     }
 
-    int getRows() { return rows; }
-    int getCols() { return cols; }
-    int getTura() { return tura; }
-    int getKierunek() { return kierunek; }
+    public int getRows() { return rows; }
+    public int getCols() { return cols; }
+    public int getTura() { return tura; }
+    public int getKierunek() { return kierunek; }
     Iterable<Organizm> getOrganizmy() { return organizmy; }
     Iterable<Organizm> getNoweOrganizmy() { return noweOrganizmy; }
     void dodajKomunikat(String info) { komunikaty.add(info); }

@@ -1,5 +1,7 @@
 package wirtualnySwiat;
 
+import wirtualnySwiat.grafika.Pole;
+
 import java.util.Random;
 
 public abstract class Organizm {
@@ -21,7 +23,7 @@ public abstract class Organizm {
 
     public abstract void akcja();
     public abstract void kolizja(Organizm drugi);
-    public abstract void rysowanie();
+    public abstract void rysowanie(Pole pole);
 
     public int getSila() { return sila; }
     public void zwiekszSileO(int str) { sila += str; }
