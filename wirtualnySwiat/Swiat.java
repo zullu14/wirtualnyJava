@@ -1,5 +1,7 @@
 package wirtualnySwiat;
 
+import wirtualnySwiat.grafika.OknoNaSwiat;
+
 import java.util.ArrayList;
 
 public class Swiat {
@@ -9,6 +11,7 @@ public class Swiat {
     private ArrayList<String> komunikaty;
     private int tura, rows, cols, kierunek;
     private boolean koniecGry;
+    private OknoNaSwiat okno;
 
     public Swiat(int rows, int cols) {
         super();
@@ -16,6 +19,10 @@ public class Swiat {
         this.cols = cols;
         this.tura = 0;
         this.koniecGry = false;
+        this.organizmy = new ArrayList<>();
+        this.noweOrganizmy = new ArrayList<>();
+        this.komunikaty = new ArrayList<>();
+        this.okno = new OknoNaSwiat(this);
     }
 
     public int getRows() { return rows; }
