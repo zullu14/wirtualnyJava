@@ -22,7 +22,7 @@ public abstract class Roslina extends Organizm {
                 }
             }
             if (!juzZajete) {						// jezeli miejsce wolne, stworz nowy organizm w tym miejscu
-                //TODO swiat.dodajOrganizm(typ, nowePolozenie);
+                swiat.dodajOrganizm(typ, nowePolozenie);
             }
         }
     }

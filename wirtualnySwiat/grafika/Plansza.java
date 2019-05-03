@@ -1,5 +1,6 @@
 package wirtualnySwiat.grafika;
 
+import wirtualnySwiat.Organizm;
 import wirtualnySwiat.Swiat;
 
 import javax.swing.*;
@@ -22,6 +23,17 @@ public class Plansza extends JPanel {
                 mapa[i][j] = new Pole(i,j);
                 add(mapa[i][j]);
             }
+        }
+    }
+
+    void rysujOrganizmy() {
+
+        for(int i=0; i < wys; i++) {
+            for(int j=0; j < szer; j++) mapa[i][j].clear();
+        }
+
+        for (Organizm org : swiat.getOrganizmy()) {
+            org.rysowanie(mapa[org.getPolozenie().x][org.getPolozenie().y]);
         }
     }
 
