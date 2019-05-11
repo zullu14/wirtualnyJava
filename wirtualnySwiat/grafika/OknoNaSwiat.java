@@ -1,11 +1,14 @@
 package wirtualnySwiat.grafika;
 
+import wirtualnySwiat.Akcje;
 import wirtualnySwiat.Organizm;
 import wirtualnySwiat.Swiat;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class OknoNaSwiat extends JFrame {
 
@@ -28,7 +31,16 @@ public class OknoNaSwiat extends JFrame {
 
         plansza = new Plansza(swiat.getCols(), swiat.getRows(), swiat);
         plansza.setPreferredSize(new Dimension(oknoSzer, oknoWys/2));
+        plansza.setFocusable(true);
+
+        plansza.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent ev) {
+                plansza.requestFocus();
+            }
+        });
+
         add(plansza);
+
 
         komunikaty = new JLabel("<html> Witaj w Wirtualnym Swiecie. </html>");
         komunikaty.setFont(new Font("Calibri", Font.BOLD, 30));
@@ -40,7 +52,7 @@ public class OknoNaSwiat extends JFrame {
 
         JButton nowaTura = new JButton("Nowa Tura");
         nowaTura.setFont(new Font("Calibri", Font.BOLD, 40));
-        nowaTura.setBackground(new Color(255, 250, 150));
+        nowaTura.setBackground(new Color(199, 186, 154));
         nowaTura.setPreferredSize(new Dimension(oknoSzer/10, oknoWys/20));
         nowaTura.setVerticalAlignment(JLabel.CENTER);
         nowaTura.setVerticalTextPosition(JLabel.CENTER);

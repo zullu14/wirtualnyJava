@@ -1,10 +1,13 @@
 package wirtualnySwiat.grafika;
 
+import wirtualnySwiat.Akcje;
 import wirtualnySwiat.Organizm;
 import wirtualnySwiat.Swiat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Plansza extends JPanel {
 
@@ -24,6 +27,34 @@ public class Plansza extends JPanel {
                 add(mapa[i][j]);
             }
         }
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_RIGHT:
+                        swiat.setKierunek(Akcje.prawo);
+                        swiat.wykonajTure();
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        swiat.setKierunek(Akcje.lewo);
+                        swiat.wykonajTure();
+                        break;
+                    case KeyEvent.VK_UP:
+                        swiat.setKierunek(Akcje.gora);
+                        swiat.wykonajTure();
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        swiat.setKierunek(Akcje.dol);
+                        swiat.wykonajTure();
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        swiat.setKierunek(Akcje.spacja);
+                        swiat.wykonajTure();
+                        break;
+                }
+            }
+        });
     }
 
     void rysujOrganizmy() {

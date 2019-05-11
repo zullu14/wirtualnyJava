@@ -40,7 +40,7 @@ public abstract class Organizm {
     public boolean czyOdbilAtak(Organizm atakujacy) { return false; } //do nadpisania
     public boolean czyUciekl(Organizm atakujacy) { return false; } //do nadpisania
 
-    Wspolrzedne losujPolozenie()
+    protected Wspolrzedne losujPolozenie()
     {
         int xNew = polozenie.x, yNew = polozenie.y;
         int r = random.nextInt(8);				// 8 pól na które można się przesunąć

@@ -1,8 +1,8 @@
 package wirtualnySwiat;
 
 import wirtualnySwiat.grafika.OknoNaSwiat;
-import wirtualnySwiat.zwierzeta.Owca;
-import wirtualnySwiat.zwierzeta.Wilk;
+import wirtualnySwiat.rosliny.*;
+import wirtualnySwiat.zwierzeta.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,7 +12,8 @@ public class Swiat {
     private ArrayList<Organizm> organizmy;
     private ArrayList<Organizm> noweOrganizmy;
     private ArrayList<String> komunikaty;
-    private int tura, rows, cols, kierunek;
+    private int tura, rows, cols;
+    private Akcje kierunek;
     private boolean koniecGry;
     private OknoNaSwiat okno;
     protected final Random random = new Random();
@@ -26,13 +27,15 @@ public class Swiat {
         this.organizmy = new ArrayList<>();
         this.noweOrganizmy = new ArrayList<>();
         this.komunikaty = new ArrayList<>();
+        this.kierunek = Akcje.stoj;
         this.okno = new OknoNaSwiat(this);
     }
 
     public int getRows() { return rows; }
     public int getCols() { return cols; }
     public int getTura() { return tura; }
-    public int getKierunek() { return kierunek; }
+    public Akcje getKierunek() { return kierunek; }
+    public void setKierunek(Akcje kier) { this.kierunek = kier; }
     public Iterable<Organizm> getOrganizmy() { return organizmy; }
     public Iterable<Organizm> getNoweOrganizmy() { return noweOrganizmy; }
     public Iterable<String> getKomunikaty() { return komunikaty; }
@@ -57,14 +60,14 @@ public class Swiat {
         // narysuj obecny stan świata wraz z komunikatami
         rysujSwiat();
 
-        // obsługa klawiatury
-        //obslugaKlawiatury();
+        // zerowanie pola kierunek, czyli ostatniego klikniętego klawisza
+        kierunek = Akcje.stoj;
 
         // na koniec dolicz kolejną turę
         tura++;
     }
 
-    void dodajKomunikat(String info) { komunikaty.add(info); }
+    public void dodajKomunikat(String info) { komunikaty.add(info); }
 
     void dodajOrganizm(Rodzaj typ, Wspolrzedne miejsce) {
 
@@ -76,34 +79,34 @@ public class Swiat {
                 noweOrganizmy.add(new Owca(this, miejsce));
                 break;
             case zolw:
-                //noweOrganizmy.add(new Zolw(this, miejsce));
+                noweOrganizmy.add(new Zolw(this, miejsce));
                 break;
             case lis:
-                //noweOrganizmy.add(new Lis(this, miejsce));
+                noweOrganizmy.add(new Lis(this, miejsce));
                 break;
             case antylopa:
-                //noweOrganizmy.add(new Antylopa(this, miejsce));
+                noweOrganizmy.add(new Antylopa(this, miejsce));
                 break;
             case trawa:
-                //noweOrganizmy.add(new Trawa(this, miejsce));
+                noweOrganizmy.add(new Trawa(this, miejsce));
                 break;
             case mlecz:
-                //noweOrganizmy.add(new Mlecz(this, miejsce));
+                noweOrganizmy.add(new Mlecz(this, miejsce));
                 break;
             case guarana:
-                //noweOrganizmy.add(new Guarana(this, miejsce));
+                noweOrganizmy.add(new Guarana(this, miejsce));
                 break;
             case jagody:
-                //noweOrganizmy.add(new WilczeJagody(this, miejsce));
+                noweOrganizmy.add(new WilczeJagody(this, miejsce));
                 break;
             case barszcz:
-                //noweOrganizmy.add(new Sosnowski(this, miejsce));
+                noweOrganizmy.add(new Sosnowski(this, miejsce));
                 break;
             case czlowiek:
-                //noweOrganizmy.add(new Czlowiek(this, miejsce));
+                noweOrganizmy.add(new Czlowiek(this, miejsce));
                 break;
             case cyberowca:
-                //noweOrganizmy.add(new CyberOwca(this, miejsce));
+                noweOrganizmy.add(new CyberOwca(this, miejsce));
                 break;
         }
     }
@@ -147,8 +150,7 @@ public class Swiat {
                 }
             }
             if (!juzZajete) {							// jezeli miejsce wolne, stworz nowy organizm w tym miejscu
-                r = random.nextInt(2);              //TODO
-                //r = random.nextInt(Rodzaj.values().length);
+                r = random.nextInt(Rodzaj.values().length - 2);
                 dodajOrganizm(Rodzaj.values()[r], new Wspolrzedne(x,y));
                 i++;
             }

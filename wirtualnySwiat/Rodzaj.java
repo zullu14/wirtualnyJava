@@ -4,8 +4,8 @@ public enum Rodzaj {
 
     wilk,
     owca,
-    zolw,
     lis,
+    zolw,
     antylopa,
     trawa,
     mlecz,

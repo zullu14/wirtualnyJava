@@ -20,6 +20,7 @@ public class Owca extends Zwierze {
     @Override
     public void rysowanie(Pole pole) {
         pole.setBackground(new Color(200,200,200));
-        pole.setNazwa("owca");
+        //pole.setNazwa("owca");
+        pole.setBackgroundImg("owca");
     }
 }

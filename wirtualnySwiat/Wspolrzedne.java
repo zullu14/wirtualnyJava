@@ -9,6 +9,11 @@ public class Wspolrzedne {
         this.y = y;
     }
 
+    public Wspolrzedne(Wspolrzedne inne) {
+        this.x = inne.x;
+        this.y = inne.y;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Wspolrzedne) {

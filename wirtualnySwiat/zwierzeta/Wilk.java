@@ -19,7 +19,7 @@ public class Wilk extends Zwierze {
 
     @Override
     public void rysowanie(Pole pole) {
-        pole.setBackground(new Color(50,130,230));
+        pole.setBackground(new Color(70, 164,230));
         pole.setNazwa("wilk");
     }
 }

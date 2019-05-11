@@ -49,7 +49,7 @@ public abstract class Zwierze extends Organizm {
         }
         // ZJADANIE ROŚLINY
         else if (drugi instanceof Roslina) {	// jezeli drugi organizm jest rośliną
-            polozenie = drugi.getPolozenie();				// zajmij miejsce rośliny\
+            polozenie = drugi.getPolozenie();				// zajmij miejsce rośliny
             drugi.kolizja(this);								// metoda kolizja() danej rośliny określa efekty zjedzenia jej przez zwierzęta
             drugi.setCzyZyje(false);							// ustawienie stanu rośliny na nieżywy
         }
