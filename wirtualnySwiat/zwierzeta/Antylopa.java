@@ -14,6 +14,12 @@ public class Antylopa extends Zwierze {
         this.typ = Rodzaj.antylopa;
     }
 
+    public Antylopa(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 4;
+        this.typ = Rodzaj.antylopa;
+    }
+
     @Override
     public void akcja() {
         super.akcja();

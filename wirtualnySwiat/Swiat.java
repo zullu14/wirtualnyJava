@@ -4,8 +4,13 @@ import wirtualnySwiat.grafika.OknoNaSwiat;
 import wirtualnySwiat.rosliny.*;
 import wirtualnySwiat.zwierzeta.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Swiat {
 
@@ -16,7 +21,9 @@ public class Swiat {
     private Akcje kierunek;
     private boolean koniecGry;
     private OknoNaSwiat okno;
-    protected final Random random = new Random();
+    private File zapisSwiata;
+    private final Random random = new Random();
+    private final static String newline = "\n";
 
     public Swiat(int rows, int cols) {
         super();
@@ -69,6 +76,67 @@ public class Swiat {
 
     public void dodajKomunikat(String info) { komunikaty.add(info); }
 
+    public void zapiszSwiat(String plik) {
+
+        zapisSwiata = new File(plik+".txt");
+        try{
+            zapisSwiata.createNewFile();
+            BufferedWriter zapis = new BufferedWriter(new FileWriter(plik+".txt", false));      // overwrite
+            zapis.append(Integer.toString(rows)); zapis.append(" ");
+            zapis.append(Integer.toString(cols)); zapis.append(" ");
+            zapis.append(Integer.toString(tura)); zapis.append(" ");
+            zapis.append(Integer.toString(organizmy.size())); zapis.append(" ");
+            for (Organizm org : organizmy) {
+                zapis.append(org.getTyp().toFile()); zapis.append(newline);
+                zapis.append(Integer.toString(org.getSila())); zapis.append(" ");
+                zapis.append(Integer.toString(org.getWiek())); zapis.append(" ");
+                zapis.append(Integer.toString(org.getPolozenie().x)); zapis.append(" ");
+                zapis.append(Integer.toString(org.getPolozenie().y)); zapis.append(" ");
+                if(org instanceof Czlowiek) {
+                    zapis.append(Integer.toString(((Czlowiek) org).getLicznikTarczy()));
+                    zapis.append(" ");
+                }
+            }
+            zapis.close();
+        } catch (Exception e){
+            System.out.println("IO exceptiion "+e);
+        }
+    }
+
+    public boolean wczytajSwiat(String plik) {
+
+        try (Scanner s = new Scanner(new FileReader(plik+".txt"))) {
+            int w = 0, k = 0, ileTur, n;
+            w = s.nextInt();
+            k = s.nextInt();
+            ileTur = s.nextInt();
+            n = s.nextInt();
+            if (w > 0 && k > 0) {
+                organizmy.clear();
+                rows = w;
+                cols = k;
+                tura = ileTur;
+                Rodzaj gatunek;
+                int sila = 0, wiek = 0, x = 0, y = 0, licznik = 0;
+                for(int i  = 0; i < n; i++) {
+                    gatunek = Rodzaj.valueOf(s.nextLine().substring(1));
+                    sila = s.nextInt();
+                    wiek = s.nextInt();
+                    x = s.nextInt();
+                    y = s.nextInt();
+                    if (gatunek.equals(Rodzaj.czlowiek)) licznik = s.nextInt();
+                    dodajOrganizm(gatunek, new Wspolrzedne(x,y), sila, wiek, licznik);
+                }
+                rysujSwiat();           // po udanym wczytaniu, narysuj nowy stan gry
+                return true;
+            }
+            else return false;
+        } catch (Exception e) {
+            System.out.println("IO exceptiion "+e);
+            return false;
+        }
+    }
+
     void dodajOrganizm(Rodzaj typ, Wspolrzedne miejsce) {
 
         switch (typ) {
@@ -107,6 +175,48 @@ public class Swiat {
                 break;
             case cyberowca:
                 noweOrganizmy.add(new CyberOwca(this, miejsce));
+                break;
+        }
+    }
+
+    private void dodajOrganizm(Rodzaj typ, Wspolrzedne miejsce, int sila, int wiek, int licznik) {
+
+        switch (typ) {
+            case wilk:
+                organizmy.add(new Wilk(this, miejsce, sila, wiek));
+                break;
+            case owca:
+                organizmy.add(new Owca(this, miejsce, sila, wiek));
+                break;
+            case zolw:
+                organizmy.add(new Zolw(this, miejsce, sila, wiek));
+                break;
+            case lis:
+                organizmy.add(new Lis(this, miejsce, sila, wiek));
+                break;
+            case antylopa:
+                organizmy.add(new Antylopa(this, miejsce, sila, wiek));
+                break;
+            case trawa:
+                organizmy.add(new Trawa(this, miejsce, sila, wiek));
+                break;
+            case mlecz:
+                organizmy.add(new Mlecz(this, miejsce, sila, wiek));
+                break;
+            case guarana:
+                organizmy.add(new Guarana(this, miejsce, sila, wiek));
+                break;
+            case jagody:
+                organizmy.add(new WilczeJagody(this, miejsce, sila, wiek));
+                break;
+            case barszcz:
+                organizmy.add(new Sosnowski(this, miejsce, sila, wiek));
+                break;
+            case czlowiek:
+                organizmy.add(new Czlowiek(this, miejsce, sila, wiek, licznik));
+                break;
+            case cyberowca:
+                organizmy.add(new CyberOwca(this, miejsce, sila, wiek));
                 break;
         }
     }
@@ -217,10 +327,8 @@ public class Swiat {
 
 	void dodajOrganizm(rodzaj typ, wspolrzedne miejsce, int sila, int wiek, int licznik);
 
-
-	void obslugaKlawiatury();
 	int piszMenu();
-	void zapiszSwiat();
+	void
 	bool wczytajSwiat();
 	void wyczyscOrganizmy();
      */

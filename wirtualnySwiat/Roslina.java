@@ -8,6 +8,8 @@ public abstract class Roslina extends Organizm {
         super(srodowisko, miejsce);
     }
 
+    public Roslina(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) { super(srodowisko, miejsce, sila, wiek); }
+
     @Override
     public void akcja() {
         // ROZPRZESTRZENIANIE ROŚLIN

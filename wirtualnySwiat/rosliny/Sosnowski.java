@@ -15,6 +15,12 @@ public class Sosnowski extends Roslina {
         this.typ = Rodzaj.barszcz;
     }
 
+    public Sosnowski(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 0;
+        this.typ = Rodzaj.barszcz;
+    }
+
     @Override
     public void akcja() {
         for (Organizm org : swiat.getOrganizmy()) {								// sprawdzenie czy wokoło są żywe organizmy i czy nie jest to cyber-owca

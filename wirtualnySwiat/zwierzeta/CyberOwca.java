@@ -15,6 +15,12 @@ public class CyberOwca extends Zwierze {
         this.typ = Rodzaj.cyberowca;
     }
 
+    public CyberOwca(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 4;
+        this.typ = Rodzaj.cyberowca;
+    }
+
     @Override
     public void akcja() {
         // ustalenie kierunku ruchu - tam gdzie pierwszy Barszcz Sosnowskiego

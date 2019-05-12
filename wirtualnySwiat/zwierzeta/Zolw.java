@@ -14,6 +14,12 @@ public class Zolw extends Zwierze {
         this.typ = Rodzaj.zolw;
     }
 
+    public Zolw(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 1;
+        this.typ = Rodzaj.zolw;
+    }
+
     @Override
     public void akcja() {
         if(random.nextInt(4) == 0) super.akcja();

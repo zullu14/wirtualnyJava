@@ -17,6 +17,12 @@ public class Trawa extends Roslina {
         this.typ = Rodzaj.trawa;
     }
 
+    public Trawa(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 0;
+        this.typ = Rodzaj.trawa;
+    }
+
     @Override
     public void rysowanie(Pole pole) {
         pole.setBackground(new Color(0, 150, 20));

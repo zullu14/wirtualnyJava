@@ -8,6 +8,8 @@ public abstract class Zwierze extends Organizm {
         super(srodowisko, miejsce);
     }
 
+    public Zwierze(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) { super(srodowisko, miejsce, sila, wiek); }
+
     @Override
     public void akcja() {
         if (!czyRozmnozylSie) {					// jezeli uczestniczyl w rozmnazaniu w tej turze, to nie moze sie ruszac

@@ -17,6 +17,12 @@ public class Mlecz extends Roslina {
         this.typ = Rodzaj.mlecz;
     }
 
+    public Mlecz(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 0;
+        this.typ = Rodzaj.mlecz;
+    }
+
     @Override
     public void akcja() {
         super.akcja();

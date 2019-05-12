@@ -17,6 +17,12 @@ public class Owca extends Zwierze {
         this.typ = Rodzaj.owca;
     }
 
+    public Owca(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 4;
+        this.typ = Rodzaj.owca;
+    }
+
     @Override
     public void rysowanie(Pole pole) {
         pole.setBackground(new Color(200,200,200));

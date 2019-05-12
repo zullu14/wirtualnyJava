@@ -46,4 +46,35 @@ public enum Rodzaj {
                 return "obcy";
         }
     }
+
+    public String toFile() {
+        switch (this) {
+            case wilk:
+                return "wilk";
+            case owca:
+                return "owca";
+            case zolw:
+                return "zolw";
+            case lis:
+                return "lis";
+            case antylopa:
+                return "antylopa";
+            case trawa:
+                return "trawa";
+            case mlecz:
+                return "mlecz";
+            case jagody:
+                return "jagody";
+            case barszcz:
+                return "barszcz";
+            case guarana:
+                return "guarana";
+            case czlowiek:
+                return "czlowiek";
+            case cyberowca:
+                return "cyberowca";
+            default:
+                return "obcy";
+        }
+    }
 }

@@ -21,6 +21,15 @@ public abstract class Organizm {
         this.wiek = swiat.getTura();
     }
 
+    public Organizm(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        this.swiat = srodowisko;
+        this.polozenie = miejsce;
+        this.sila = sila;
+        this.wiek = wiek;
+        this.czyZyje = true;
+        this.czyRozmnozylSie = false;
+    }
+
     public abstract void akcja();
     public abstract void kolizja(Organizm drugi);
     public abstract void rysowanie(Pole pole);

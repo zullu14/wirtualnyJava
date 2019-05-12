@@ -26,7 +26,7 @@ public class Pole extends JPanel {
 
     public void setBackgroundImg(String plik) {
         try {
-            background = ImageIO.read(new File(plik+".png"));
+            background = ImageIO.read(new File(plik+".png"));           // TODO: bez wczytywania nowego obrazu za kazdym razem
         } catch (IOException e) {
             setNazwa("brak obrazka");
         }

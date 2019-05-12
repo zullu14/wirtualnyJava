@@ -17,6 +17,15 @@ public class Czlowiek extends Zwierze {
         this.licznikTarczy = 0;
     }
 
+    public Czlowiek(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek, int licznikTarczy) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 4;
+        this.typ = Rodzaj.czlowiek;
+        this.licznikTarczy = licznikTarczy;
+    }
+
+    public int getLicznikTarczy() { return licznikTarczy; }
+
     @Override
     public void akcja() {
         if (licznikTarczy>0) licznikTarczy--;				// cooldown umiejętności

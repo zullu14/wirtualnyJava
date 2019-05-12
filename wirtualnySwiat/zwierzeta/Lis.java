@@ -14,6 +14,12 @@ public class Lis extends Zwierze {
         this.typ = Rodzaj.lis;
     }
 
+    public Lis(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 7;
+        this.typ = Rodzaj.lis;
+    }
+
     @Override
     public void akcja() {
         if (!czyRozmnozylSie) {					// jezeli uczestniczyl w rozmnazaniu w tej turze, to nie moze sie ruszac

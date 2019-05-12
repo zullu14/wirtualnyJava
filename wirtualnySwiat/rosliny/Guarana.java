@@ -14,6 +14,12 @@ public class Guarana extends Roslina {
         this.typ = Rodzaj.guarana;
     }
 
+    public Guarana(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 0;
+        this.typ = Rodzaj.guarana;
+    }
+
     @Override
     public void kolizja(Organizm drugi) {
         drugi.zwiekszSileO(3);

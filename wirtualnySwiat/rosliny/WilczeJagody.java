@@ -14,6 +14,12 @@ public class WilczeJagody extends Roslina {
         this.typ = Rodzaj.jagody;
     }
 
+    public WilczeJagody(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 0;
+        this.typ = Rodzaj.jagody;
+    }
+
     @Override
     public void kolizja(Organizm drugi) {
         drugi.setCzyZyje(false);		// po zjedzeniu wilczych jagód każde zwierzę umiera

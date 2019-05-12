@@ -17,6 +17,12 @@ public class Wilk extends Zwierze {
         this.typ = Rodzaj.wilk;
     }
 
+    public Wilk(Swiat srodowisko, Wspolrzedne miejsce, int sila, int wiek) {
+        super(srodowisko, miejsce, sila, wiek);
+        this.inicjatywa = 5;
+        this.typ = Rodzaj.wilk;
+    }
+
     @Override
     public void rysowanie(Pole pole) {
         pole.setBackground(new Color(70, 164,230));
