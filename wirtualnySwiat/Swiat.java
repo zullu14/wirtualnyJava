@@ -137,6 +137,54 @@ public class Swiat {
         }
     }
 
+    public void dodajWlasnyOrganizm(String typ, Wspolrzedne miejsce) {
+        switch (typ) {
+            case "wilk":
+                organizmy.add(new Wilk(this, miejsce));
+                break;
+            case "owca":
+                organizmy.add(new Owca(this, miejsce));
+                break;
+            case "zolw":
+                organizmy.add(new Zolw(this, miejsce));
+                break;
+            case "lis":
+                organizmy.add(new Lis(this, miejsce));
+                break;
+            case "antylopa":
+                organizmy.add(new Antylopa(this, miejsce));
+                break;
+            case "trawa":
+                organizmy.add(new Trawa(this, miejsce));
+                break;
+            case "mlecz":
+                organizmy.add(new Mlecz(this, miejsce));
+                break;
+            case "guarana":
+                organizmy.add(new Guarana(this, miejsce));
+                break;
+            case "wilcze jagody":
+                organizmy.add(new WilczeJagody(this, miejsce));
+                break;
+            case "barszcz Sosnowskiego":
+                organizmy.add(new Sosnowski(this, miejsce));
+                break;
+            case "cyber-owca":
+                organizmy.add(new CyberOwca(this, miejsce));
+                break;
+            default:
+                organizmy.add(new Owca(this, miejsce));
+                break;
+        }
+    }
+
+    public void rysujSwiat() {
+
+        okno.rysujOrganizmy();
+        if (tura > 0) okno.ustawKomunikaty();
+        komunikaty.clear();
+    }
+
     void dodajOrganizm(Rodzaj typ, Wspolrzedne miejsce) {
 
         switch (typ) {
@@ -268,16 +316,7 @@ public class Swiat {
         dodajNoweOrganizmy();
         rysujSwiat();
 
-        // obsługa klawiatury - przed pierwszą turą
-        //obslugaKlawiatury(); TODO
         tura++;
-    }
-
-    private void rysujSwiat() {
-
-        okno.rysujOrganizmy();
-        if (tura > 0) okno.ustawKomunikaty();
-        komunikaty.clear();
     }
 
     private void dodajNoweOrganizmy() {

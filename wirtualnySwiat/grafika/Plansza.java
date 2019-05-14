@@ -23,7 +23,7 @@ public class Plansza extends JPanel {
         this.mapa = new Pole[wys][szer];
         for(int i=0; i < wys; i++) {
             for(int j=0; j < szer; j++) {
-                mapa[i][j] = new Pole(i,j);
+                mapa[i][j] = new Pole(swiat, i, j);
                 add(mapa[i][j]);
             }
         }
