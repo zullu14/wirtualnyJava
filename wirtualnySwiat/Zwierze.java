@@ -65,7 +65,7 @@ public abstract class Zwierze extends Organizm {
                 swiat.dodajKomunikat(this.getTyp().toString() + " zabija " + drugi.getTyp().toString() + " na pozycji " + polozenie.x + "," + polozenie.y + ". ");
                 drugi.setCzyZyje(false);						// ustawienie stanu drugiego organizmu na nieżywy
             }
-		else {												// na odwort: drugi zabija pierwszego
+            else {												// na odwort: drugi zabija pierwszego
                 swiat.dodajKomunikat(drugi.getTyp().toString() + " zabija " + this.getTyp().toString() + " na pozycji " + polozenie.x + "," + polozenie.y + ". ");
                 this.setCzyZyje(false);						// ustawienie stanu tego organizmu na nieżywy
             }

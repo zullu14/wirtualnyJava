@@ -19,23 +19,24 @@ public class Swiat {
     private ArrayList<String> komunikaty;
     private int tura, rows, cols;
     private Akcje kierunek;
-    private boolean koniecGry;
     private OknoNaSwiat okno;
-    private File zapisSwiata;
     private final Random random = new Random();
     private final static String newline = "\n";
 
-    public Swiat(int rows, int cols) {
+    public Swiat(int rows, int cols) throws ZleWymiarySwiataException {
+
         super();
+        if (rows <= 0 || cols <= 0) throw new ZleWymiarySwiataException("Zle wymiary swiata!");
         this.rows = rows;
         this.cols = cols;
         this.tura = 0;
-        this.koniecGry = false;
         this.organizmy = new ArrayList<>();
         this.noweOrganizmy = new ArrayList<>();
         this.komunikaty = new ArrayList<>();
         this.kierunek = Akcje.stoj;
         this.okno = new OknoNaSwiat(this);
+        stworzSwiat();
+        okno.setVisible(true);
     }
 
     public int getRows() { return rows; }
@@ -78,7 +79,7 @@ public class Swiat {
 
     public void zapiszSwiat(String plik) {
 
-        zapisSwiata = new File(plik+".txt");
+        File zapisSwiata = new File(plik + ".txt");
         try{
             zapisSwiata.createNewFile();
             BufferedWriter zapis = new BufferedWriter(new FileWriter(plik+".txt", false));      // overwrite
@@ -106,18 +107,22 @@ public class Swiat {
     public boolean wczytajSwiat(String plik) {
 
         try (Scanner s = new Scanner(new FileReader(plik+".txt"))) {
-            int w = 0, k = 0, ileTur, n;
+            int w, k, ileTur, n;
             w = s.nextInt();
             k = s.nextInt();
             ileTur = s.nextInt();
             n = s.nextInt();
             if (w > 0 && k > 0) {
                 organizmy.clear();
-                rows = w;
-                cols = k;
+                if (rows != w || cols != k) {               // jeżeli wymiary świata się zmieniły, stwórz nowe okno graficzne
+                    rows = w;
+                    cols = k;
+                    okno.resetPlanszy();
+                }
                 tura = ileTur;
+
                 Rodzaj gatunek;
-                int sila = 0, wiek = 0, x = 0, y = 0, licznik = 0;
+                int sila, wiek, x, y, licznik = 0;
                 for(int i  = 0; i < n; i++) {
                     gatunek = Rodzaj.valueOf(s.nextLine().substring(1));
                     sila = s.nextInt();
@@ -127,6 +132,7 @@ public class Swiat {
                     if (gatunek.equals(Rodzaj.czlowiek)) licznik = s.nextInt();
                     dodajOrganizm(gatunek, new Wspolrzedne(x,y), sila, wiek, licznik);
                 }
+                okno.ustawPanelSterowania("Wczytany ostatni zapis z pliku "+plik+".txt. ");
                 rysujSwiat();           // po udanym wczytaniu, narysuj nowy stan gry
                 return true;
             }
@@ -182,6 +188,7 @@ public class Swiat {
 
         okno.rysujOrganizmy();
         if (tura > 0) okno.ustawKomunikaty();
+        okno.ustawPanelSterowania(null);
         komunikaty.clear();
     }
 
@@ -269,8 +276,7 @@ public class Swiat {
         }
     }
 
-    //private
-    void stworzSwiat() {
+    private void stworzSwiat() {
 
         int populacja = (rows*cols) / 14;			// ok. 7% zaludnienia
         int x, y, r;
@@ -357,19 +363,5 @@ public class Swiat {
     }
 
     private void usunOrganizmy() { organizmy.removeIf(org -> !org.getCzyZyje()); }
-
-    /*
-    public:
-    void rozpocznijGre();
-
-    private:
-
-	void dodajOrganizm(rodzaj typ, wspolrzedne miejsce, int sila, int wiek, int licznik);
-
-	int piszMenu();
-	void
-	bool wczytajSwiat();
-	void wyczyscOrganizmy();
-     */
 
 }

@@ -7,6 +7,6 @@ public enum Akcje {
     gora,
     dol,
     spacja,
-    stoj;
+    stoj
 
 }

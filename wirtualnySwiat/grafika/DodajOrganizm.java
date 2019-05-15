@@ -1,5 +1,6 @@
 package wirtualnySwiat.grafika;
 
+import wirtualnySwiat.Organizm;
 import wirtualnySwiat.Swiat;
 import wirtualnySwiat.Wspolrzedne;
 
@@ -9,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class DodajOrganizm extends MouseAdapter {
 
@@ -24,6 +24,10 @@ public class DodajOrganizm extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent event) {
+
+        // sprawdzenie czy dane miejsce jest wolne
+        for (Organizm org : swiat.getOrganizmy())
+            if (polozenie.equals(org.getPolozenie())) return;
 
         JPopupMenu menu = new JPopupMenu();
 

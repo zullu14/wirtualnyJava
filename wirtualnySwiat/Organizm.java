@@ -44,7 +44,7 @@ public abstract class Organizm {
     public boolean getCzyZyje() { return czyZyje; }
     public void setCzyZyje(boolean stan) { czyZyje = stan; }
     public boolean getCzyRozmnozylSie() { return czyRozmnozylSie; }
-    public void setCzyRozmnozylSie(boolean stan) { czyRozmnozylSie = stan; }
+    void setCzyRozmnozylSie(boolean stan) { czyRozmnozylSie = stan; }
 
     public boolean czyOdbilAtak(Organizm atakujacy) { return false; } //do nadpisania
     public boolean czyUciekl(Organizm atakujacy) { return false; } //do nadpisania

@@ -4,18 +4,25 @@ import wirtualnySwiat.Akcje;
 import wirtualnySwiat.Organizm;
 import wirtualnySwiat.Swiat;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 
-public class Plansza extends JPanel {
+class Plansza extends JPanel {
 
     private Swiat swiat;
     private Pole[][] mapa;
     private int szer, wys;
+    private HashMap<String, BufferedImage> grafiki;
+    private final static String[] gatunki ={ "owca", "cyber-owca" };  // docelowo: lista gatunków z reprezentacją graficzną
 
-    public Plansza(int w, int h, Swiat swiat) {
+    Plansza(int w, int h, Swiat swiat) {
         this.swiat = swiat;
         this.szer = w;
         this.wys = h;
@@ -23,7 +30,7 @@ public class Plansza extends JPanel {
         this.mapa = new Pole[wys][szer];
         for(int i=0; i < wys; i++) {
             for(int j=0; j < szer; j++) {
-                mapa[i][j] = new Pole(swiat, i, j);
+                mapa[i][j] = new Pole(swiat, this, i, j);
                 add(mapa[i][j]);
             }
         }
@@ -55,6 +62,22 @@ public class Plansza extends JPanel {
                 }
             }
         });
+
+        grafiki = new HashMap<>();
+        BufferedImage obrazek;
+        for(String typ : gatunki) {
+            try {
+                obrazek = ImageIO.read(new File(typ+".png"));
+                grafiki.put(typ,obrazek);
+            } catch (IOException e) {
+                System.out.println("brak obrazka dla typu: "+typ);
+            }
+        }
+
+    }
+
+    BufferedImage getGrafika(String typ) {
+        return grafiki.get(typ);
     }
 
     void rysujOrganizmy() {
